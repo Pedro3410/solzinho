@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Para o meu solzinho ❤️☀️</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('foto3.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 222, 225, 0.6);
+            z-index: -1;
+        }
+        h1 {
+            color: #d6336c;
+            margin-top: 30px;
+        }
+        #contador {
+            font-size: 18px;
+            color: #660033;
+            margin: 15px 0 10px 0;
+            font-weight: bold;
+        }
+        .fotos-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px 40px;
+            padding: 20px 10px 40px 10px;
+        }
+        img, video {
+            max-width: 300px;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            margin: 0;
+            object-fit: contain;
+        }
+        img:hover, video:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(214, 51, 108, 0.7);
+            cursor: pointer;
+        }
+        button {
+            background: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background: #d6336c;
+        }
+        .heart {
+            position: fixed;
+            top: -10px;
+            font-size: 24px;
+            animation: fall 5s linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Para o meu solzinho ❤️☀️</h1>
+
+    <!-- Botão para tocar música -->
+    <div>
+        <button id="botaoPlay">Tocar música</button>
+    </div>
+
+    <!-- Contador do tempo juntos -->
+    <div id="contador">
+        Calculando o tempo desde nosso primeiro beijo...
+    </div>
+
+    <!-- Fotos (sem a foto3, pois está no fundo) -->
+    <div class="fotos-container">
+        <img src="foto1.jpg" alt="Foto nossa" />
+        <img src="foto2.jpg" alt="Foto nossa" />
+        <img src="foto4.jpg" alt="Foto nossa" />
+        <img src="foto5.jpg" alt="Foto nossa" />
+        <img src="foto6.jpg" alt="Foto nossa" />
+        <img src="foto7.jpg" alt="Foto nossa" />
+        <img src="foto8.jpg" alt="Foto nossa" />
+        <img src="foto9.jpg" alt="Foto nossa" />
+        <img src="foto10.jpg" alt="Foto nossa" />
+    </div>
+
+    <!-- Vídeos -->
+    <div>
+        <video width="320" height="240" controls>
+            <source src="video1.mp4" type="video/mp4" />
+        </video>
+        <video width="320" height="240" controls>
+            <source src="video2.mp4" type="video/mp4" />
+        </video>
+        <video width="320" height="240" controls>
+            <source src="video3.mp4" type="video/mp4" />
+        </video>
+        <video width="320" height="240" controls>
+            <source src="video4.mp4" type="video/mp4" />
+        </video>
+        <video width="320" height="240" controls>
+            <source src="video5.mp4" type="video/mp4" />
+        </video>
+    </div>
+
+    <!-- Botão surpresa -->
+    <div>
+        <button onclick="mostrarMensagem()">Você sempre irá iluminar o meu mundo!</button>
+    </div>
+
+    <audio id="musica" loop>
+        <source src="musica.mp3" type="audio/mpeg" />
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <script>
+        // Corações caindo
+        function criarCoracao() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+        setInterval(criarCoracao, 300);
+
+        // Mensagem surpresa
+        function mostrarMensagem() {
+            alert("Eu te amo mais do que tudo nesse mundo ❤️ Você é o meu presente mais lindo!");
+        }
+
+        // Tocar música após clique no botão
+        const botao = document.getElementById('botaoPlay');
+        const musica = document.getElementById('musica');
+
+        botao.addEventListener('click', () => {
+            musica.play();
+            botao.style.display = 'none'; // Esconde o botão após tocar
+        });
+
+        // Contador de tempo desde o primeiro beijo
+        const contadorDiv = document.getElementById('contador');
+        const dataPrimeiroBeijo = new Date(2023, 4, 21, 21, 30, 0); // 21 de maio de 2023, 21:30:00
+
+        function atualizarContador() {
+            const agora = new Date();
+            let diff = agora - dataPrimeiroBeijo;
+
+            if(diff < 0) {
+                contadorDiv.textContent = "Ainda não começamos nosso tempo juntos!";
+                return;
+            }
+
+            const segundos = Math.floor(diff / 1000) % 60;
+            const minutos = Math.floor(diff / (1000 * 60)) % 60;
+            const horas = Math.floor(diff / (1000 * 60 * 60)) % 24;
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            contadorDiv.textContent = `Já se passaram ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos desde o nosso primeiro beijo ❤️`;
+        }
+
+        atualizarContador();
+        setInterval(atualizarContador, 1000);
+
+    </script>
+
+</body>
+</html>
