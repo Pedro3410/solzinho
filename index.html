@@ -33,6 +33,17 @@
             margin: 15px 0 10px 0;
             font-weight: bold;
         }
+        .mensagem-central {
+            font-size: 20px;
+            color: #660033;
+            font-weight: bold;
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
         .fotos-container {
             display: flex;
             flex-wrap: wrap;
@@ -48,7 +59,6 @@
             border-radius: 15px;
             box-shadow: 0 0 15px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
-            margin: 0;
             object-fit: contain;
         }
         img:hover, video:hover {
@@ -95,7 +105,12 @@
         Calculando o tempo desde nosso primeiro beijo...
     </div>
 
-    <!-- Fotos (sem a foto3, pois está no fundo) -->
+    <!-- Texto central -->
+    <div class="mensagem-central">
+        Parabéns, Solzinho. Estou muito orgulhoso de você. Este é o meu presente pela sua aprovação. Sei que não é muito e nem chega perto do que você realmente merece, mas é de coração. Eu gostaria de te dar o mundo, porém, você já é o meu mundinho. Que Deus te abençoe para sempre ❤️
+    </div>
+
+    <!-- Fotos -->
     <div class="fotos-container">
         <img src="foto1.jpg" alt="Foto nossa" />
         <img src="foto2.jpg" alt="Foto nossa" />
@@ -129,7 +144,7 @@
 
     <!-- Botão surpresa -->
     <div>
-        <button onclick="mostrarMensagem()">Você sempre irá iluminar o meu mundo!</button>
+        <button id="botaoSurpresa">Recadinho surpresa</button>
     </div>
 
     <audio id="musica" loop>
@@ -152,23 +167,23 @@
         }
         setInterval(criarCoracao, 300);
 
-        // Mensagem surpresa
-        function mostrarMensagem() {
-            alert("Eu te amo mais do que tudo nesse mundo ❤️ Você é o meu presente mais lindo!");
-        }
-
-        // Tocar música após clique no botão
-        const botao = document.getElementById('botaoPlay');
-        const musica = document.getElementById('musica');
-
-        botao.addEventListener('click', () => {
-            musica.play();
-            botao.style.display = 'none'; // Esconde o botão após tocar
+        // Botão surpresa
+        const botaoSurpresa = document.getElementById('botaoSurpresa');
+        botaoSurpresa.addEventListener('click', () => {
+            alert("Você sempre irá iluminar o meu mundo ❤️");
         });
 
-        // Contador de tempo desde o primeiro beijo
+        // Botão de música
+        const botaoPlay = document.getElementById('botaoPlay');
+        const musica = document.getElementById('musica');
+        botaoPlay.addEventListener('click', () => {
+            musica.play();
+            botaoPlay.style.display = 'none';
+        });
+
+        // Contador
         const contadorDiv = document.getElementById('contador');
-        const dataPrimeiroBeijo = new Date(2023, 4, 21, 21, 30, 0); // 21 de maio de 2023, 21:30:00
+        const dataPrimeiroBeijo = new Date(2023, 4, 21, 21, 30, 0);
 
         function atualizarContador() {
             const agora = new Date();
